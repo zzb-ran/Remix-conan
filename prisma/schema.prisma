@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model ConanInfo {
+  kid           Int       @id
+  name          String
+  title         String
+  description   String
+  picUrl        String
+  imageUrl      String
+  playUrl       String
+  duration      String
+}

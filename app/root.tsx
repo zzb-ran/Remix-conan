@@ -6,11 +6,16 @@ import {
   Scripts,
   ScrollRestoration
 } from "remix";
-// import type { MetaFunction } from "remix";
+import type { LinksFunction, MetaFunction } from "remix";
+import globalStyleUrl from "~/styles/global.css"
 
-// export const meta: MetaFunction = () => {
-//   return { title: "New Remix App" };
-// };
+export const links: LinksFunction = () => {
+  return [{rel: "stylesheet", href: globalStyleUrl}]
+};
+
+export const meta: MetaFunction = () => {
+  return { title: "Remix App" };
+};
 
 export default function App() {
   return (
@@ -18,16 +23,26 @@ export default function App() {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <title>Remix: So great, it's funny!</title>
-        {/* <Meta /> */}
+        <Meta />
         <Links />
       </head>
       <body>
-        <Outlet />
+        <div id="root">
+          <Outlet />
+        </div>
         {/* <ScrollRestoration />
         <Scripts /> */}
         {process.env.NODE_ENV === "development" ?? <LiveReload />}
       </body>
     </html>
   );
+}
+
+export function  ErrorBoundary({error}: {error: Error}) {
+  return (
+    <div className="error-container">
+    <h1>App Error</h1>
+      <pre>{error.message}</pre>
+    </div>
+  )
 }

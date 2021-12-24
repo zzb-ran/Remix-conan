@@ -1,7 +1,11 @@
 import type { LoaderFunction } from "remix";
-import { useLoaderData } from "remix";
-import { db } from '~/utils/db.server';
+import { useLoaderData, useParams } from "remix";
+import { db } from "~/utils/db.server";
 import { ConanItem } from "~/utils/interface";
+
+interface ConanId {
+  conanId?: String
+}
 
 export const loader: LoaderFunction = async ({ 
   params:{ conanId }
@@ -27,4 +31,11 @@ export default function ConanRoute() {
       <p>简介:{ conanitem.description }</p>
     </>
   )
+}
+
+export function ErrorBoundary() {
+  const { conanId }: ConanId  = useParams();
+  return (
+    <div className="error-container">错误: 还没有第{conanId}集</div>
+  );
 }

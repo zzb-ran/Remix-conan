@@ -2,7 +2,7 @@ import type { LinksFunction, LoaderFunction } from "remix";
 import { useLoaderData, Link } from "remix";
 import { db } from "~/utils/db.server";
 import { ConanItem } from "~/utils/interface";
-import stylesUrl from '~/styles/conan.css';
+import stylesUrl from "~/styles/conan.css";
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: stylesUrl }];
@@ -24,9 +24,11 @@ export default function ConanIndex() {
     <>
       <ul>
         {conaninfos.map(conanInfoItem => (
-          <Link to={`${conanInfoItem.kid}`}>
-            <li>{ conanInfoItem.kid }.{ conanInfoItem.title }</li>
-          </Link>
+          <li>
+            <Link to={`${conanInfoItem.kid}`}>
+              { conanInfoItem.kid }.{ conanInfoItem.title }
+            </Link>
+          </li>
         ))}
       </ul>
     </>

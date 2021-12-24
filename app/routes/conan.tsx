@@ -1,6 +1,7 @@
 import { Links, Outlet } from "remix";
 
-export default function  Joker() {
+
+export default function Conan() {
   return (
     <div className="conan">
       <Links />
